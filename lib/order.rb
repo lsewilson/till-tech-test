@@ -18,7 +18,10 @@ class Order
    end
 
    def print_receipt(receipt = Receipt.new)
-     receipt.render(@list)
+     receipt_array = receipt.render(@list)
+     receipt_array.each do |line|
+       print "#{line[0]} #{line[1]} x #{line[2]}\n"
+     end
    end
 
 end
