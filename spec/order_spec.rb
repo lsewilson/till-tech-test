@@ -19,4 +19,20 @@ describe Order do
       expect(order.list).to eq [["Cafe Latte", 4.75]]
     end
   end
+
+  describe '#print_receipt' do
+
+    let(:receipt) { double :receipt, render: "string" }
+
+    before do
+      2.times {order.add("Cafe Latte")}
+      order.add("Blueberry Muffin")
+      order.add("Choc Mudcake")
+    end
+
+    it 'creates a new receipt' do
+      order.print_receipt(receipt)
+      expect(receipt).to have_received(:render).with(order.list)
+    end
+  end
 end
