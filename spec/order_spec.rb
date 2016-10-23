@@ -22,7 +22,7 @@ describe Order do
 
   describe '#print_receipt' do
 
-    let(:receipt) { double :receipt, render: [["Cafe Latte", 2, 9.5], ["Blueberry Muffin", 1, 4.05], ["Choc Mudcake", 1, 6.4]] }
+    let(:receipt) { double :receipt, render: "Cafe Latte 2 9.50\nBlueberry Muffin 1 4.05\nChoc Mudcake 1 6.40\n" }
 
     before do
       2.times {order.add("Cafe Latte")}
@@ -36,7 +36,7 @@ describe Order do
     end
 
     it 'prints the receipt to the console' do
-      msg = "Cafe Latte 2 x 9.5\nBlueberry Muffin 1 x 4.05\nChoc Mudcake 1 x 6.4\n"
+      msg = "Cafe Latte 2 9.50\nBlueberry Muffin 1 4.05\nChoc Mudcake 1 6.40\n"
       expect{order.print_receipt(receipt)}.to output(msg).to_stdout
     end
    end
